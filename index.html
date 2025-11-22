@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zillion Systems</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://fast.wistia.com/player.js" async></script>
+    <script src="https://fast.wistia.com/embed/58ajutp3x5.js" async type="module"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                red: '#dc2626',
+                dark: '#0a0a0a',
+                darker: '#050505',
+                accent: '#ef4444',
+                glow: '#ff0000',
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.5s ease-out',
+              'blob': 'blob 7s infinite',
+              'shimmer': 'shimmer 2s linear infinite',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
+              },
+              shimmer: {
+                '0%': { backgroundPosition: '0% 50%' },
+                '100%': { backgroundPosition: '200% 50%' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #050505;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #dc2626;
+      }
+      
+      body {
+        background-color: #000;
+        color: #fff;
+      }
+      
+      .glass-panel {
+        background: rgba(20, 20, 20, 0.6);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .liquid-gradient-text {
+        background-size: 200% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 5s linear infinite;
+      }
+      
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* Animations for Liquid Glass */
+      @keyframes liquid-pulse {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      /* Liquid Glass Button Style (Primary) */
+      .btn-liquid-glass {
+        background: linear-gradient(45deg, rgba(220, 38, 38, 0.2), rgba(220, 38, 38, 0.1), rgba(220, 38, 38, 0.25));
+        background-size: 200% 200%;
+        animation: liquid-pulse 5s ease infinite;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 
+          0 4px 30px rgba(0, 0, 0, 0.1),
+          inset 0 0 20px rgba(220, 38, 38, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .btn-liquid-glass::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: 0.6s ease;
+        pointer-events: none;
+      }
+      
+      .btn-liquid-glass:hover {
+        background: rgba(220, 38, 38, 0.4);
+        box-shadow: 
+          0 10px 40px 0 rgba(220, 38, 38, 0.4),
+          inset 0 0 20px rgba(220, 38, 38, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        border-color: rgba(255, 255, 255, 0.4);
+        transform: translateY(-2px) scale(1.02);
+      }
+      
+      .btn-liquid-glass:hover::before {
+        left: 100%;
+      }
+
+      /* Liquid Glass Outline Button (Secondary) */
+      .btn-liquid-glass-outline {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+      }
+
+      .btn-liquid-glass-outline:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 
+          0 0 20px rgba(255, 255, 255, 0.1),
+          inset 0 0 20px rgba(255, 255, 255, 0.05);
+        transform: translateY(-2px);
+      }
+
+      /* Wistia Placeholders */
+      wistia-player[media-id='d49iy5xgk7']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/d49iy5xgk7/swatch'); display: block; filter: blur(5px); padding-top:176.8%; }
+      wistia-player[media-id='xw80snk2dg']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/xw80snk2dg/swatch'); display: block; filter: blur(5px); padding-top:176.8%; }
+      wistia-player[media-id='xwbrl2indj']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/xwbrl2indj/swatch'); display: block; filter: blur(5px); padding-top:177.78%; }
+      wistia-player[media-id='58ajutp3x5']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/58ajutp3x5/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-black text-white antialiased selection:bg-brand-red selection:text-white">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
